@@ -1,7 +1,6 @@
 # build
 FROM maven:3.9.9-eclipse-temurin-17 AS builder
 
-# задаём переменную VERSION, которая будет использоваться для сборки проекта
 ARG VERSION=${VERSION}
 
 WORKDIR /usr/src/app
@@ -19,7 +18,6 @@ ARG VERSION=${VERSION}
 
 WORKDIR /app
 
-# создаём пользователя jaruser
 RUN addgroup --system jaruser && \
     adduser -S -s /bin/false -G jaruser jaruser -D -H && \
     apk add --no-cache dumb-init && \
@@ -33,7 +31,6 @@ COPY --chown=jaruser:jaruser \
 
 EXPOSE 8080
 
-# приложение будет запускаться под пользователем jaruser
 USER jaruser
 
 ENTRYPOINT ["dumb-init", "java", "-jar", "-Dmyserver.bindPort=8080", "./sausage-store.jar"]
