@@ -1,3 +1,5 @@
+DROP table IF EXISTS order_product;
+
 ALTER TABLE product ADD PRIMARY KEY (id);
 ALTER TABLE product ADD COLUMN price DOUBLE PRECISION;
 ALTER TABLE orders ADD PRIMARY KEY (id);
