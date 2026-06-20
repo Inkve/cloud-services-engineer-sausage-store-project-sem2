@@ -49,6 +49,7 @@ spec:
           volumeMounts:
             - name: postgresql-data
               mountPath: /var/lib/postgresql/data
+          resources:
 {{ toYaml .Values.postgresql.resources | indent 12 }}
   volumeClaimTemplates:
     - metadata:
